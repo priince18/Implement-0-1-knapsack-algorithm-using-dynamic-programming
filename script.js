@@ -60,6 +60,22 @@ function generateTable() {
         html += "</tr>";
     }
 
+    fetch("/save-data", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            weights: weights,
+            values: values,
+            capacity: W,
+            totalProfit: dp[n][W]
+        })
+    })
+    .then(res => res.json())
+    .then(data => console.log(data));
+
+
     html += "</table>";
     html += `<h3>Total Profit = ${dp[n][W]}</h3>`;
 
